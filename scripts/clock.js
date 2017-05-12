@@ -6,7 +6,7 @@ $(document).ready(function(){
 	var minutesElement = $(clock).find('.minutes');
 	var secondsElement = $(clock).find('.seconds');
 	var startText = $(toggleElement).text();
-	var minutes, seconds, timer, running;
+	var minutes, seconds, timer;
 
 	function prependZero(time, length){
 		//Quick way to turn number to string is to prepend it with a string
