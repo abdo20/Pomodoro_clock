@@ -1,9 +1,12 @@
-.clock p {
+.clock .time {
 	font-size:10rem;
 }
-.container {
+.container{
 	width:100vw;
 	height:100vh;
+}
+
+.flex {
 	display:-ms-flexbox;
 	display:-webkit-flex;
 	display:flex;
@@ -24,5 +27,12 @@
 	align-items:center;
 }
 .clock {
+	background-color:lightgrey;
+	width:400pt;
+	height:300pt;
+}
+
+.clock button{
+	margin-bottom:30pt;
 	
 }
