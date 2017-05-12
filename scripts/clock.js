@@ -22,28 +22,8 @@ $(document).ready(function(){
 		$(secondsElement).text(prependZero(seconds, 2));
 	}
 
-	function runClock(){
-		var startTime=Date.now();
-		var prevMinutes=minutes;
-		var prevSeconds= seconds;
-		timer = setInterval(function(){
-			var timeElapsed = Date.now()-startTime;
-
-			minutes = ((timeElapsed/60000)+prevMinutes)%60;
-			seconds =((timeElapsed/1000)+prevSeconds)%60;
-
-			setClock(minutes, seconds);
-		},1000);
-	}
-
 	//split out timer functions into functions
 	//easier to read and write down resposibilities
-
-	function run(){
-		running=true;
-		runClock();
-		$(toggleElement).text(pauseText);
-	}
 
 	function pause(){
 		running=false;
@@ -51,15 +31,42 @@ $(document).ready(function(){
 		$(toggleElement).text(resumeText);
 	}
 
+	function run(){
+		running=true;
+		runClock();
+		$(toggleElement).text(pauseText);
+	}
+
 	function reset(){
 		running=false;
 		pause();
-		minutes=0;
+		minutes=25;
 		seconds=0;
 		setClock(minutes,seconds);
 		toggleElement.text(startText);
 	}
 
+
+	function runClock(){
+		var remainingSeconds = minutes*60;
+		timer = setInterval(function(){
+			// take 1 second each loop
+			remainingSeconds=remainingSeconds-1;
+			minutes = ((remainingSeconds/60))%60;
+			seconds =((remainingSeconds))%60;
+			setClock(minutes, seconds);
+			// check if the clock runout of time (seconds)
+			if (remainingSeconds==0){
+				reset();
+			}
+			},1000);
+		
+	}
+
+
+	
+
+	
 	$(toggleElement).on('click',function(){
 		(running) ? pause() : run();
 	});
