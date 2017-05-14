@@ -43,7 +43,7 @@ $(document).ready(function(){
 	function reset(){
 		running=false;
 		pause();
-		minutes=$('.user-minutes').val();
+		minutes=Math.floor($('.user-minutes').val());
 		seconds=0;
 		if (minutes>0 && minutes<=90){setClock(minutes, seconds)}
 	}
