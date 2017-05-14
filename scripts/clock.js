@@ -19,6 +19,16 @@ $(document).ready(function(){
 		$(secondsElement).text(prependZero(seconds, 2));
 	}
 
+	function minutesCheck (){
+		if (90>=minutes>0){
+			setClock(minutes, seconds);
+			$(playButton).removeAttr('disabled');
+			
+		}else{
+			$(playButton).attr('disabled','');
+		}
+	}
+
 	//split out timer functions into functions
 	//easier to read and write down resposibilities
 
@@ -30,10 +40,12 @@ $(document).ready(function(){
 	}
 
 	function run(){
-		running=true;
-		$(playButton).text('pause');
-		$('.reset').removeAttr('disabled');
-		runClock();
+		if (minutes>0){
+			running=true;
+			$(playButton).text('pause');
+			$('.reset').removeAttr('disabled');
+			runClock();
+		}
 		//$(toggleElement).html('<i class="fa fa-pause fa-5x" aria-hidden="true"></i>');
 	}
 
@@ -41,9 +53,9 @@ $(document).ready(function(){
 		running=false;
 		$('.reset').attr('disabled','');
 		pause();
-		minutes=25;
+		minutes=$('.user-minutes').val();
 		seconds=0;
-		setClock(minutes, seconds);
+		minutesCheck();
 	}
 
 
@@ -56,7 +68,7 @@ $(document).ready(function(){
 			seconds =((remainingSeconds))%60;
 			setClock(minutes, seconds);
 			// check if the clock runout of time (seconds)
-			if (remainingSeconds==0){
+			if (remainingSeconds<=0){
 				reset();
 			}
 			},1000);
@@ -65,14 +77,23 @@ $(document).ready(function(){
 
 	
 	$('.play').on('click',function(){
-		(running) ? pause() : run();
+	(running) ? pause() : run();
 	});
+	
+
 	reset();
 	if (running) run();
 
 	$('.reset').on('click',function(){
 		reset();
 	});
+
+	$('.costom').on('click',function(){
+		if (90>= $('.user-minutes').val()>0){
+			reset();
+		}
+		
+	})
 
 });
 
