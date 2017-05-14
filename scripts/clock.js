@@ -1,7 +1,8 @@
 $(document).ready(function(){
 	var minutesElement = $('.clock').find('.minutes');
 	var secondsElement = $('.clock').find('.seconds');
-	var playButton= $('.control').find('.play');
+	var play=$('.clock').find('.play');
+	var snd = new Audio("https://www.dropbox.com/s/p3wconux2o8hdbn/Air%20Horn-SoundBible.com-1561808001.wav?dl=1");
 	var minutes, seconds, timer;
 
 	function prependZero(time, length){
@@ -19,22 +20,12 @@ $(document).ready(function(){
 		$(secondsElement).text(prependZero(seconds, 2));
 	}
 
-	function minutesCheck (){
-		if (90>=minutes>0){
-			setClock(minutes, seconds);
-			$(playButton).removeAttr('disabled');
-			
-		}else{
-			$(playButton).attr('disabled','');
-		}
-	}
-
 	//split out timer functions into functions
 	//easier to read and write down resposibilities
 
 	function pause(){
 		running=false;
-		$(playButton).text('play');
+		$('.control').html('<i class="fa fa-play fa-5x" aria-hidden="true"></i>');
 		clearTimeout(timer);
 		//$(toggleElement).html('<i class="fa fa-play fa-5x" aria-hidden="true"></i>');
 	}
@@ -42,8 +33,8 @@ $(document).ready(function(){
 	function run(){
 		if (minutes>0){
 			running=true;
-			$(playButton).text('pause');
-			$('.reset').removeAttr('disabled');
+			$('.control').html('<i class="fa fa-pause fa-5x" aria-hidden="true"></i>');
+			
 			runClock();
 		}
 		//$(toggleElement).html('<i class="fa fa-pause fa-5x" aria-hidden="true"></i>');
@@ -51,11 +42,10 @@ $(document).ready(function(){
 
 	function reset(){
 		running=false;
-		$('.reset').attr('disabled','');
 		pause();
 		minutes=$('.user-minutes').val();
 		seconds=0;
-		minutesCheck();
+		if (minutes>0 && minutes<=90){setClock(minutes, seconds)}
 	}
 
 
@@ -69,6 +59,7 @@ $(document).ready(function(){
 			setClock(minutes, seconds);
 			// check if the clock runout of time (seconds)
 			if (remainingSeconds<=0){
+				snd.play();
 				reset();
 			}
 			},1000);
@@ -76,7 +67,7 @@ $(document).ready(function(){
 	}
 
 	
-	$('.play').on('click',function(){
+	$(play).on('click',function(){
 	(running) ? pause() : run();
 	});
 	
@@ -84,16 +75,19 @@ $(document).ready(function(){
 	reset();
 	if (running) run();
 
-	$('.reset').on('click',function(){
-		reset();
-	});
 
-	$('.costom').on('click',function(){
-		if (90>= $('.user-minutes').val()>0){
+	$('.reset').on('click',function(){
+		if ($('.user-minutes').val()<=90 && $('.user-minutes').val()>0){
 			reset();
 		}
 		
 	})
+	//when user press enter after input a valid number of minuets
+	$('.user-minutes').keypress(function(event){
+		if(event.keyCode ==13){
+			$('.reset').click();
+			}
+	});
 
 });
 

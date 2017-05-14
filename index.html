@@ -4,25 +4,28 @@
 	<title>Pomodoro Clock</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="styles/eric-meyer-reset.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Arvo|PT+Sans+Narrow" rel="stylesheet">  
+	<link href="https://fonts.googleapis.com/css?family=Arvo|PT+Sans+Narrow|Lobster" rel="stylesheet">  
+	<link rel="stylesheet" href="styles/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="styles/style.css">
 	<link rel="stylesheet" type="text/css" href="styles/clock_style.css">
 	<link rel="stylesheet" type="text/css" href="styles/clockControl.css">
 </head>
 <body>
 	<div class="container flex">
-		<div class="options">
-			<label>stady time: <input class="user-minutes" type="text" value="25"></input></label>
-			<input class="costom" type="submit" value="apply">
-		</div>
-		<div class="clock flex play">
-			<div class="time">
+		<header>
+			<h1 class="logo">Pomodoro</h1>
+		</header>
+		<div class="clock-frame flex">
+		<div class="clock flex">
+			<p class="time play">
 				<spin class="minutes"></spin><spin class="colon"></spin><spin class="seconds"></spin>
-			</div>
+			</p>
+			<div class="control flex play"></div>
+			<div class="reset flex"><i class="fa fa-repeat fa-5x" aria-hidden="true"></i></div>
 		</div>
-		<div class="control">
-			<button class="play">play</button>
-			<button class="reset">reset</button>
+			<div class="options">
+			<input class="user-minutes" type="text" value="25">
+		</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>

@@ -1,0 +1,32 @@
+
+.control,.reset{
+	background-color:#cecc8c;
+	position:absolute;
+	margin-top:256pt;
+	width:80pt;
+	height:80pt;
+	border:2px solid #94ccbc;
+	border-radius:100%;
+	color:#bfd5af;
+}
+
+.control{
+	
+	margin-right:400pt;
+	
+}
+
+.reset{
+	
+	margin-left:400pt;
+
+}
+
+
+.control:hover,.reset:hover{
+	color:#71bcc6;
+}
+
+.user-minutes{
+	width:16pt;
+}
