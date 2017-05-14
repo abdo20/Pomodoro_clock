@@ -1,11 +1,7 @@
 $(document).ready(function(){
-	var clock=$('.clock');
-	var toggleElement = $(clock).find('.toggle');
-	var pauseText = $(toggleElement).data('pausetext');
-	var resumeText= $(toggleElement).data('resumetext');
-	var minutesElement = $(clock).find('.minutes');
-	var secondsElement = $(clock).find('.seconds');
-	var startText = $(toggleElement).text();
+	var minutesElement = $('.clock').find('.minutes');
+	var secondsElement = $('.clock').find('.seconds');
+	var playButton= $('.control').find('.play');
 	var minutes, seconds, timer;
 
 	function prependZero(time, length){
@@ -19,6 +15,7 @@ $(document).ready(function(){
 	function setClock(minutes, seconds){
 		//using text(). html() will construct HTML when it finds one overhead
 		$(minutesElement).text(prependZero(minutes, 2));
+		$('.colon').text(':');
 		$(secondsElement).text(prependZero(seconds, 2));
 	}
 
@@ -27,23 +24,26 @@ $(document).ready(function(){
 
 	function pause(){
 		running=false;
+		$(playButton).text('play');
 		clearTimeout(timer);
-		$(toggleElement).text(resumeText);
+		//$(toggleElement).html('<i class="fa fa-play fa-5x" aria-hidden="true"></i>');
 	}
 
 	function run(){
 		running=true;
+		$(playButton).text('pause');
+		$('.reset').removeAttr('disabled');
 		runClock();
-		$(toggleElement).text(pauseText);
+		//$(toggleElement).html('<i class="fa fa-pause fa-5x" aria-hidden="true"></i>');
 	}
 
 	function reset(){
 		running=false;
+		$('.reset').attr('disabled','');
 		pause();
 		minutes=25;
 		seconds=0;
-		setClock(minutes,seconds);
-		toggleElement.text(startText);
+		setClock(minutes, seconds);
 	}
 
 
@@ -63,14 +63,16 @@ $(document).ready(function(){
 		
 	}
 
-
 	
-
-	
-	$(toggleElement).on('click',function(){
+	$('.play').on('click',function(){
 		(running) ? pause() : run();
 	});
 	reset();
 	if (running) run();
+
+	$('.reset').on('click',function(){
+		reset();
+	});
+
 });
 

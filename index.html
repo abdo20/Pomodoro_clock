@@ -4,16 +4,21 @@
 	<title>Pomodoro Clock</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="styles/eric-meyer-reset.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Arvo|PT+Sans+Narrow" rel="stylesheet">  
 	<link rel="stylesheet" type="text/css" href="styles/style.css">
 	<link rel="stylesheet" type="text/css" href="styles/clock_style.css">
+	<link rel="stylesheet" type="text/css" href="styles/clockControl.css">
 </head>
 <body>
 	<div class="container flex">
-		<div class="clock flex">
-			<button class="toggle" data-pausetext="Pause" data-resumetext="Resume">Start</button>
+		<div class="clock flex play">
 			<div class="time">
-				<spin class="minutes"></spin>:<spin class="seconds"></spin>
+				<spin class="minutes"></spin><spin class="colon"></spin><spin class="seconds"></spin>
 			</div>
+		</div>
+		<div class="control">
+			<button class="play">play</button>
+			<button class="reset">reset</button>
 		</div>
 	</div>
 	<script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>

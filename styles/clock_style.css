@@ -1,5 +1,7 @@
 .clock .time {
+	font-family: 'PT Sans Narrow', sans-serif;
 	font-size:10rem;
+	color:white;
 }
 .container{
 	width:100vw;
@@ -27,12 +29,22 @@
 	align-items:center;
 }
 .clock {
-	background-color:lightgrey;
-	width:400pt;
-	height:300pt;
+	background-color:black;
+	width:300pt;
+	height:150pt;
 }
 
-.clock button{
-	margin-bottom:30pt;
-	
+.clock a{
+	position:absolute;
+	color:white;
+}
+
+.time{
+	cursor:default;
+	margin-bottom:24pt;
+}
+
+.time .colon{
+	font-family: 'Arvo', serif;
+	font-size:13rem;
 }
