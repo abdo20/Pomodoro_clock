@@ -8,6 +8,7 @@
 	border:2px solid #94ccbc;
 	border-radius:100%;
 	color:#bfd5af;
+	transition:all ease 1s;
 }
 
 .control{

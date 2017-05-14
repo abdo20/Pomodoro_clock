@@ -9,6 +9,7 @@
 .container{
 	width:100vw;
 	height:100vh;
+	background-image: url(https://cdn.pixabay.com/photo/2013/01/05/13/58/tomatoes-73913_960_720.jpg);
 }
 
 .flex {
